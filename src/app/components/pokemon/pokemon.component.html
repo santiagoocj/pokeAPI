@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Tu pokemon</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="pt-2">
+        <h4 id="espaciado">Mis pokemones</h4>
+        <h5 id=centrado>¿QUE TIPO ES TU POKEMON?</h5>
+        <div class="container">
+            <form>
+                <input type="text" class="buscador mb-2 mr-sm-2 col-6 col-sm-8" [(ngModel)]="buscarPokemon" name="buscarPokemon" #buscarpokemon="ngModel" placeholder="Bulbasaur, ditto ...">
+                <button type="submit" class="btn btn-red-pokemon mb-1 col-3 col-sm-2 text-white" (click)="search()">Buscar</button>
+            </form>
+        </div>
+        <h5 id="misresultados">Busca aquí tu pokemon para obtener información detallada</h5>
+    </div>
+
+    <div class="container caja" *ngIf="pokemon.nombre != null">
+        <h5 id="misresultados">Mis Resultados</h5>
+        <div class="row">
+            <div class="informacion colorfondo col-sm-8 py-0">
+                <div class="row ">
+                    <div class="col-sm-3">
+                        <img src="{{pokemon.imagenes.back_default}}">
+                    </div>
+
+                    <div class="col-sm-3">
+                        <img src="{{pokemon.imagenes.back_female}}">
+                    </div>
+                    <div class="col-sm-3">
+                        <img src="{{pokemon.imagenes.back_shiny}}">
+                    </div>
+
+                    <div class="col-sm-3">
+                        <img src="{{pokemon.imagenes.back_shiny_female}}">
+                    </div>
+                    <div class="col-sm-3">
+                        <img src="{{pokemon.imagenes.front_default}}">
+                    </div>
+                    <div class="col-sm-3">
+                        <img src="{{pokemon.imagenes.front_female}}">
+                    </div>
+                    <div class="col-sm-3 ">
+                        <img src="{{pokemon.imagenes.front_shiny}}">
+                    </div>
+                    <div class="col-sm-3">
+                        <img src="{{pokemon.imagenes.front_shiny_female}}">
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="informacion organizarbordes col-sm-4" *ngIf="pokemon.tipo == 'normal'" style="border: 1px solid red;">
+                <h5>{{pokemon.nombre}}</h5>
+                <p><strong>Tipo: </strong> {{pokemon.tipo}}</p>
+                <strong>Movimiento: </strong>
+                <p class="inline" *ngFor="let movimiento of pokemon.movimientos">{{movimiento.move.name}},
+                </p>
+            </div>
+            <div class="informacion organizarbordes col-sm-4" *ngIf="pokemon.tipo != 'normal'" style="border: 1px solid yellow;">
+                <h5>{{pokemon.nombre}}</h5>
+                <p><strong>Tipo: </strong> {{pokemon.tipo}}</p>
+                <strong>Movimiento: </strong>
+                <p class="inline" *ngFor="let movimiento of pokemon.movimientos">{{movimiento.move.name}},
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <h5><a href="https://pokeapi.co/">WWW.POKEAPI.CO</a></h5>
+        <p>Diseñado por <strong>Santiago Ocampo Jimenez &copy; </strong> | año 2021</p>
+    </footer>
+</body>
+
+</html>
